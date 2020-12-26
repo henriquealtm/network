@@ -47,6 +47,13 @@ dependencies {
     implementation constraintLayout
     implementation material
 
+    implementation retrofit
+    implementation gson
+    implementation gsonConverter
+    implementation okHttp
+    implementation okHttpInterceptor
+    implementation retrofitCoroutineAdapter
+
     implementation jUnit
     implementation coreTesting
 }
