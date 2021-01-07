@@ -1,4 +1,4 @@
-package br.com.henriquealtmayer.network.livedata
+package br.com.henriquealtmayer.network.structure.livedata
 
 import kotlinx.coroutines.*
 import retrofit2.HttpException

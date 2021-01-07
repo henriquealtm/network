@@ -1,4 +1,4 @@
-package br.com.henriquealtmayer.network.livedata
+package br.com.henriquealtmayer.network.structure.livedata
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

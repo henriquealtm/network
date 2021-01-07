@@ -1,4 +1,4 @@
-package br.com.henriquealtmayer.network.commons
+package br.com.henriquealtmayer.network.commons.activity
 
 import android.os.Bundle
 import androidx.annotation.LayoutRes
