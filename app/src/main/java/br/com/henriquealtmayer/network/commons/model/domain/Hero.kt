@@ -1,4 +1,4 @@
-package br.com.henriquealtmayer.network.list.livedata.domain.model
+package br.com.henriquealtmayer.network.commons.model.domain
 
 data class Hero(
     val id: Int,

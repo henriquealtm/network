@@ -1,8 +1,8 @@
 package br.com.henriquealtmayer.network.list.livedata.domain.repository
 
 import androidx.lifecycle.LiveData
-import br.com.henriquealtmayer.network.list.livedata.data.model.HeroResponse
-import br.com.henriquealtmayer.network.structure.livedata.Resource
+import br.com.henriquealtmayer.network.commons.model.data.HeroResponse
+import br.com.henriquealtmayer.network.commons.structure.Resource
 
 interface ILdRepository {
 

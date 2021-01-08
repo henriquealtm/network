@@ -1,21 +1,21 @@
-package br.com.henriquealtmayer.network.list.livedata.presentation
+package br.com.henriquealtmayer.network.list.flow.presentation
 
 import br.com.henriquealtmayer.network.R
 import br.com.henriquealtmayer.network.commons.activity.BaseActivity
-import br.com.henriquealtmayer.network.databinding.ActivityLdListBinding
 import br.com.henriquealtmayer.network.commons.listadapter.ListAdapter
+import br.com.henriquealtmayer.network.databinding.ActivityFlowListBinding
 import kotlinx.android.synthetic.main.activity_ld_list.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.*
 
-class LdListActivity : BaseActivity<ActivityLdListBinding>(
-    R.layout.activity_ld_list
+class FlowListActivity : BaseActivity<ActivityFlowListBinding>(
+    R.layout.activity_flow_list
 ) {
 
-    private val ldListVm: LdListViewModel by viewModel()
+    private val flowListVm: FlowListViewModel by viewModel()
 
-    override val loadVm: (ActivityLdListBinding) -> Unit = { binding ->
-        binding.vm = ldListVm
+    override val loadVm: (ActivityFlowListBinding) -> Unit = { binding ->
+        binding.vm = flowListVm
     }
 
     private lateinit var adapter: ListAdapter
@@ -29,11 +29,11 @@ class LdListActivity : BaseActivity<ActivityLdListBinding>(
     private fun createListAdapter() {
         adapter = ListAdapter(this)
 
-        rvHeroList.adapter = this@LdListActivity.adapter
+        rvHeroList.adapter = this@FlowListActivity.adapter
     }
 
     override fun initializeViewModels() {
-        ldListVm.heroList.observe(this) { list ->
+        flowListVm.heroList.observe(this) { list ->
             list?.let { adapter.submitList(list) }
         }
     }

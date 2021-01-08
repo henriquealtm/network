@@ -12,7 +12,7 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-private const val BASE_URL_NAME = "BASE_URL"
+const val BASE_URL_NAME = "BASE_URL"
 private const val BASE_URL = "https://gateway.marvel.com"
 private const val PRIVATE_KEY_NAME = "PRIVATE_KEY"
 private const val PRIVATE_KEY = "60fad1c4f98d88c33dc165220d948dec0c6d1e6a"
@@ -66,18 +66,5 @@ val commonsModule = module {
         client.addInterceptor(get())
 
         client.build()
-    }
-
-    single {
-        Retrofit.Builder()
-            .baseUrl(get<String>(named(BASE_URL_NAME)))
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())
-            .client(get())
-            .build()
-    }
-
-    single {
-        get<Retrofit>().create(LdApi::class.java)
     }
 }

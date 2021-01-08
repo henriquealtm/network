@@ -1,8 +1,8 @@
-package br.com.henriquealtmayer.network.list.livedata.domain.map
+package br.com.henriquealtmayer.network.commons.map
 
 import br.com.henriquealtmayer.network.commons.handleOptional
-import br.com.henriquealtmayer.network.list.livedata.data.model.HeroResponse
-import br.com.henriquealtmayer.network.list.livedata.domain.model.Hero
+import br.com.henriquealtmayer.network.commons.model.data.HeroResponse
+import br.com.henriquealtmayer.network.commons.model.domain.Hero
 
 fun HeroResponse.toHero() = Hero(
     id.handleOptional(),

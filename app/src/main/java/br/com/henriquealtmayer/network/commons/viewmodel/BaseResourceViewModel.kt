@@ -3,8 +3,7 @@ package br.com.henriquealtmayer.network.commons.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import br.com.henriquealtmayer.network.structure.livedata.Resource
-import br.com.henriquealtmayer.network.structure.livedata.ResultError
+import br.com.henriquealtmayer.network.commons.structure.Resource
 
 abstract class BaseResourceViewModel<T> : BaseNavigateViewModel() {
 

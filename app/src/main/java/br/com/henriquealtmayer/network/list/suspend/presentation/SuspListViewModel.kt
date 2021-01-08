@@ -1,27 +1,36 @@
-package br.com.henriquealtmayer.network.list.livedata.presentation
+package br.com.henriquealtmayer.network.list.suspend.presentation
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.Transformations
-import br.com.henriquealtmayer.network.commons.handleOptional
-import br.com.henriquealtmayer.network.commons.viewmodel.BaseResourceViewModel
-import br.com.henriquealtmayer.network.commons.model.domain.Hero
-import br.com.henriquealtmayer.network.list.livedata.domain.usecase.LdListUseCase
+import androidx.lifecycle.*
 import br.com.henriquealtmayer.network.commons.structure.Resource
+import br.com.henriquealtmayer.network.commons.handleOptional
+import br.com.henriquealtmayer.network.commons.model.domain.Hero
+import br.com.henriquealtmayer.network.list.suspend.domain.usecase.SuspListUseCase
 
-class LdListViewModel(
-    private val listUseCase: LdListUseCase
-) : BaseResourceViewModel<List<Hero>>() {
+import kotlinx.coroutines.launch
 
-    override val getResourceCall: () -> LiveData<Resource<List<Hero>>> = {
-        listUseCase(offset)
-    }
+class SuspListViewModel(
+    private val listUseCase: SuspListUseCase
+) : ViewModel() {
 
     private var offset = 0
 
+    val resource = MutableLiveData<Resource<List<Hero>>>()
+
+    private fun getList() {
+        resource.value = Resource.Loading()
+
+        viewModelScope.launch {
+            resource.value = listUseCase.getList(offset)
+        }
+    }
+
+    val showLoader: LiveData<Boolean?> = Transformations.map(resource) { resource ->
+        resource?.let { resource is Resource.Loading<*> }
+    }
+
     private val mHeroList = MediatorLiveData<List<Hero>>().apply {
-        addSource(successResource) { list ->
-            list?.run {
+        addSource(resource) { resource ->
+            resource.data?.let { list ->
                 offset += list.size
 
                 value = value?.toMutableList()?.apply {
@@ -47,11 +56,11 @@ class LdListViewModel(
         if (showLoader.value.handleOptional()) {
             return
         }
-        super.getResource()
+        getList()
     }
 
     init {
-        super.getResource()
+        getList()
     }
 
 }

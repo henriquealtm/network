@@ -21,6 +21,8 @@
         </activity>
 
         <activity android:name=".list.livedata.presentation.LdListActivity" />
+        <activity android:name=".list.suspend.presentation.SuspListActivity" />
+        <activity android:name=".list.flow.presentation.FlowListActivity" />
     </application>
 
 </manifest>

@@ -2,8 +2,9 @@ package br.com.henriquealtmayer.network.structure.livedata
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import br.com.henriquealtmayer.network.commons.handleOptional
-import com.google.gson.Gson
+import br.com.henriquealtmayer.network.commons.structure.Resource
+import br.com.henriquealtmayer.network.commons.structure.ResultError
+import br.com.henriquealtmayer.network.commons.structure.httpNetworkError
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -13,7 +14,6 @@ import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
-@Suppress("UNCHECKED_CAST")
 fun <RESPONSE : Any> makeCall(
     client: Deferred<Response<RESPONSE>>
 ): LiveData<Resource<RESPONSE>> {
@@ -38,21 +38,4 @@ fun <RESPONSE : Any> makeCall(
     }
 
     return result
-}
-
-private fun httpNetworkError(
-    exception: HttpException
-) = if (exception.code() == 401) {
-    ResultError.ExpiredSessionError
-} else {
-    val apiError = try {
-        Gson().fromJson(exception.response()?.errorBody()?.charStream(), ErrorResponse::class.java)
-    } catch (e: Exception) {
-        ErrorResponse("")
-    }
-
-    ResultError.ResponseError(
-        httpCode = exception.code(),
-        httpMessage = apiError?.httpMessage.handleOptional(),
-    )
 }

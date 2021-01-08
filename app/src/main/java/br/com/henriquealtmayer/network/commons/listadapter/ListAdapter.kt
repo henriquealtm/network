@@ -1,4 +1,4 @@
-package br.com.henriquealtmayer.network.list.livedata.presentation.adapter
+package br.com.henriquealtmayer.network.commons.listadapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,12 +9,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import br.com.henriquealtmayer.network.R
 import br.com.henriquealtmayer.network.databinding.ItemCharacterBinding
-import br.com.henriquealtmayer.network.list.livedata.domain.model.Hero
+import br.com.henriquealtmayer.network.commons.model.domain.Hero
 
-
-internal class LdListAdapter(
+class ListAdapter(
     private val lifecycleOwner: LifecycleOwner
-) : ListAdapter<Hero, LdListAdapter.ViewHolder>(
+) : ListAdapter<Hero, br.com.henriquealtmayer.network.commons.listadapter.ListAdapter.ViewHolder>(
     DictListDiffCallback()
 ) {
 
@@ -29,7 +28,7 @@ internal class LdListAdapter(
         currentList[pos].let { heroItem ->
             holder.binding.run {
                 item = heroItem
-                lifecycleOwner = this@LdListAdapter.lifecycleOwner
+                lifecycleOwner = this@ListAdapter.lifecycleOwner
             }
         }
     }

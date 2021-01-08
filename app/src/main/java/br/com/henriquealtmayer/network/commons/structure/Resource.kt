@@ -1,4 +1,4 @@
-package br.com.henriquealtmayer.network.structure.livedata
+package br.com.henriquealtmayer.network.commons.structure
 
 sealed class Resource<out T>(val data: T? = null) {
 

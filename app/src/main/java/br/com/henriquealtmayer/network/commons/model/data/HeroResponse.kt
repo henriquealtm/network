@@ -1,4 +1,4 @@
-package br.com.henriquealtmayer.network.list.livedata.data.model
+package br.com.henriquealtmayer.network.commons.model.data
 
 import com.google.gson.annotations.SerializedName
 
