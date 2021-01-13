@@ -2,15 +2,11 @@ package br.com.henriquealtmayer.network.di
 
 import br.com.henriquealtmayer.network.BuildConfig
 import br.com.henriquealtmayer.network.commons.extension.toMD5
-import br.com.henriquealtmayer.network.list.livedata.data.api.LdApi
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 const val BASE_URL_NAME = "BASE_URL"
 private const val BASE_URL = "https://gateway.marvel.com"

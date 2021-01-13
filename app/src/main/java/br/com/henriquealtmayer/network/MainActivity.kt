@@ -1,10 +1,9 @@
 package br.com.henriquealtmayer.network
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import br.com.henriquealtmayer.network.list.flow.presentation.FlowListActivity
-import br.com.henriquealtmayer.network.list.livedata.presentation.LdListActivity
 import br.com.henriquealtmayer.network.list.suspend.presentation.SuspListActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -30,9 +29,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initializeLiveData() {
-        btn_live_data.setOnClickListener {
-            startActivity(Intent(this, LdListActivity::class.java))
-        }
+//        btn_live_data.setOnClickListener {
+//            startActivity(Intent(this, LdListActivity::class.java))
+//        }
     }
 
     private fun initializeFlow() {

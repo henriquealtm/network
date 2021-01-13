@@ -1,27 +1,25 @@
-package br.com.henriquealtmayer.network.list.livedata.presentation
+package br.com.henriquealtmayer.network.commons.activity
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.Transformations
+import androidx.lifecycle.*
 import br.com.henriquealtmayer.network.commons.handleOptional
-import br.com.henriquealtmayer.network.commons.viewmodel.BaseResourceViewModel
 import br.com.henriquealtmayer.network.commons.model.domain.Hero
-import br.com.henriquealtmayer.network.list.livedata.domain.usecase.LdListUseCase
 import br.com.henriquealtmayer.network.commons.structure.Resource
 
-class LdListViewModel(
-    private val listUseCase: LdListUseCase
-) : BaseResourceViewModel<List<Hero>>() {
+abstract class BaseListViewModel(
 
-    override val getResourceCall: () -> LiveData<Resource<List<Hero>>> = {
-        listUseCase(offset)
+) : ViewModel() {
+
+    protected var offset = 0
+
+    protected val resource = MutableLiveData<Resource<List<Hero>>>()
+
+    val showLoader: LiveData<Boolean?> = Transformations.map(resource) { resource ->
+        resource?.let { resource is Resource.Loading<*> }
     }
 
-    private var offset = 0
-
     private val mHeroList = MediatorLiveData<List<Hero>>().apply {
-        addSource(successResource) { list ->
-            list?.run {
+        addSource(resource) { resource ->
+            resource.data?.let { list ->
                 offset += list.size
 
                 value = value?.toMutableList()?.apply {
@@ -47,11 +45,9 @@ class LdListViewModel(
         if (showLoader.value.handleOptional()) {
             return
         }
-        super.getResource()
+        getList()
     }
 
-    init {
-        super.getResource()
-    }
+    abstract fun getList()
 
 }

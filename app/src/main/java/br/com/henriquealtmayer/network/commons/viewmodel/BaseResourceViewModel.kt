@@ -16,8 +16,8 @@ abstract class BaseResourceViewModel<T> : BaseNavigateViewModel() {
     }
 
     private val resource: LiveData<Resource<T>> =
-        Transformations.switchMap(mGetResource) { mustGetKeyList ->
-            mustGetKeyList?.takeIf { it }?.let {
+        Transformations.switchMap(mGetResource) { mustGetList ->
+            mustGetList?.takeIf { it }?.let {
                 getResourceCall()
             }
         }

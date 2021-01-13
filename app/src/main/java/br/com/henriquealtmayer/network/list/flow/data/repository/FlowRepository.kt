@@ -13,8 +13,22 @@ class FlowRepository(
     private val flowApi: FlowApi
 ) : IFlowRepository {
 
-    override suspend fun getList(offset: Int): Flow<Resource<List<HeroResponse>>> = makeCall {
-        flowApi.getHeroListAsync(offset).data.results
+//    override suspend fun getList(offset: Int): Flow<Resource<List<HeroResponse>>> = makeCall {
+//        flowApi.getHeroListAsync(offset).data.results
+//    }
+
+    override suspend fun getList(offset: Int): Flow<Resource<List<HeroResponse>>> = flow {
+        emit(Resource.Loading())
+
+        delay(3000)
+
+        emit(
+            Resource.Success(
+                listOf(
+                    HeroResponse(123, "1111", "123123123123", null)
+                )
+            )
+        )
     }
 
 }
