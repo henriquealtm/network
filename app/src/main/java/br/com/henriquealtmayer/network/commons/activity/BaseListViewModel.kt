@@ -13,10 +13,6 @@ abstract class BaseListViewModel(
 
     protected val resource = MutableLiveData<Resource<List<Hero>>>()
 
-    val showLoader: LiveData<Boolean?> = Transformations.map(resource) { resource ->
-        resource?.let { resource is Resource.Loading<*> }
-    }
-
     private val mHeroList = MediatorLiveData<List<Hero>>().apply {
         addSource(resource) { resource ->
             resource.data?.let { list ->
@@ -37,14 +33,26 @@ abstract class BaseListViewModel(
         list?.isNotEmpty()
     }
 
+    val showLoader: LiveData<Boolean?> = Transformations.map(resource) { resource ->
+        resource?.let { resource is Resource.Loading<*> }
+    }
+
     val scrollToBottom: LiveData<Boolean> = Transformations.map(showLoader) { showLoader ->
         showLoader?.let { showLoader }
+    }
+
+    val showError: LiveData<Boolean> = Transformations.map(resource) { resource ->
+        resource?.let { resource is Resource.Error<*> }
     }
 
     fun loadMoreHeroes() {
         if (showLoader.value.handleOptional()) {
             return
         }
+        getList()
+    }
+
+    fun tryAgain() {
         getList()
     }
 

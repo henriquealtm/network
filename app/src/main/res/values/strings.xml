@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">network</string>
     <string name="hero_picture">hero picture</string>
+
+    <!-- Error Container -->
+    <string name="ops">Ops</string>
+    <string name="sorry_there_is_an_error">Sorry there is an error :(</string>
+    <string name="try_again">Try Again</string>
 </resources>

@@ -42,7 +42,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rvHeroList" />
+            app:layout_constraintTop_toBottomOf="@+id/rvHeroList"
+            tools:visibility="gone" />
+
+        <br.com.henriquealtmayer.network.components.errorcontainer.ErrorContainer
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
+            app:gone_unless="@{vm.showError}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/rvHeroList"
+            app:layout_constraintStart_toStartOf="@+id/rvHeroList"
+            app:layout_constraintTop_toTopOf="@+id/rvHeroList"
+            app:on_try_again="@{vm::tryAgain}"
+            tools:visibility="gone" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
