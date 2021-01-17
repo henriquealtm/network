@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initializeUi() {
-        initializeLiveData()
         initializeSuspend()
         initializeFlow()
     }
@@ -26,12 +25,6 @@ class MainActivity : AppCompatActivity() {
         btn_suspend.setOnClickListener {
             startActivity(Intent(this, SuspListActivity::class.java))
         }
-    }
-
-    private fun initializeLiveData() {
-//        btn_live_data.setOnClickListener {
-//            startActivity(Intent(this, LdListActivity::class.java))
-//        }
     }
 
     private fun initializeFlow() {

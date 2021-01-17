@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.henriquealtmayer.network.commons.extension.smoothScrollToBottom
 import br.com.henriquealtmayer.network.commons.handleOptional
 
-@BindingAdapter("app:on_bottom_refresh")
+@BindingAdapter("on_bottom_refresh")
 fun RecyclerView.setOnBottomRefresh(
     onRefresh: (() -> Unit)?
 ) {
@@ -22,7 +22,7 @@ fun RecyclerView.setOnBottomRefresh(
     })
 }
 
-@BindingAdapter("app:smooth_scroll_to_bottom")
+@BindingAdapter("smooth_scroll_to_bottom")
 fun RecyclerView.setSmoothScrollToBottom(
     mustScroll: Boolean?
 ) {

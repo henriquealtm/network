@@ -38,7 +38,7 @@
                 android:padding="4dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:load_image="@{item.url}"
+                load_image="@{item.url}"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView

@@ -20,15 +20,15 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:nestedScrollingEnabled="false"
-            app:gone_unless="@{vm.showHeroList}"
+            gone_unless="@{vm.showHeroList}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/progressBar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:on_bottom_refresh="@{vm.loadMoreHeroes}"
-            app:smooth_scroll_to_bottom="@{vm.scrollToBottom}"
+            on_bottom_refresh="@{vm.loadMoreHeroes}"
+            smooth_scroll_to_bottom="@{vm.scrollToBottom}"
             tools:listitem="@layout/item_character" />
 
         <ProgressBar
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            app:gone_unless="@{vm.showLoader}"
+            gone_unless="@{vm.showLoader}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -49,12 +49,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="20dp"
-            app:gone_unless="@{vm.showError}"
+            gone_unless="@{vm.showError}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/rvHeroList"
             app:layout_constraintStart_toStartOf="@+id/rvHeroList"
             app:layout_constraintTop_toTopOf="@+id/rvHeroList"
-            app:on_try_again="@{vm::tryAgain}"
+            on_try_again="@{vm::tryAgain}"
             tools:visibility="gone" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
