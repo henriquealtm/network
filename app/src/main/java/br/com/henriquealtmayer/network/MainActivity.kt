@@ -3,15 +3,20 @@ package br.com.henriquealtmayer.network
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import br.com.henriquealtmayer.network.databinding.ActivityMainBinding
 import br.com.henriquealtmayer.network.list.flow.presentation.FlowListActivity
 import br.com.henriquealtmayer.network.list.suspend.presentation.SuspListActivity
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    // This Binding is made with View Binding
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         initializeUi()
     }
@@ -22,13 +27,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initializeSuspend() {
-        btn_suspend.setOnClickListener {
+        binding.btnSuspend.setOnClickListener {
             startActivity(Intent(this, SuspListActivity::class.java))
         }
     }
 
     private fun initializeFlow() {
-        btn_flow.setOnClickListener {
+        binding.btnSuspend.setOnClickListener {
             startActivity(Intent(this, FlowListActivity::class.java))
         }
     }

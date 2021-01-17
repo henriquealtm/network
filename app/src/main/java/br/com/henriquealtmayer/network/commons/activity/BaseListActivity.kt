@@ -6,16 +6,18 @@ import androidx.databinding.DataBindingUtil
 import br.com.henriquealtmayer.network.R
 import br.com.henriquealtmayer.network.commons.listadapter.ListAdapter
 import br.com.henriquealtmayer.network.databinding.ActivityBaseListBinding
-import kotlinx.android.synthetic.main.activity_base_list.*
 
 abstract class BaseListActivity : AppCompatActivity() {
+
+    // This Binding is made with Data Binding
+    private var binding: ActivityBaseListBinding? = null
 
     private lateinit var adapter: ListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        (DataBindingUtil.setContentView(
+        binding = (DataBindingUtil.setContentView(
             this,
             R.layout.activity_base_list
         ) as? ActivityBaseListBinding)?.apply {
@@ -37,7 +39,7 @@ abstract class BaseListActivity : AppCompatActivity() {
 
     private fun createListAdapter() {
         adapter = ListAdapter(this)
-        rvHeroList.adapter = this@BaseListActivity.adapter
+        binding?.rvHeroList?.adapter = this@BaseListActivity.adapter
     }
 
     private fun initializeViewModels() {

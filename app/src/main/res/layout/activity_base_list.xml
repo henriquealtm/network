@@ -17,27 +17,27 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvHeroList"
+            gone_unless="@{vm.showHeroList}"
+            on_bottom_refresh="@{vm.loadMoreHeroes}"
+            smooth_scroll_to_bottom="@{vm.scrollToBottom}"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:nestedScrollingEnabled="false"
-            gone_unless="@{vm.showHeroList}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/progressBar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            on_bottom_refresh="@{vm.loadMoreHeroes}"
-            smooth_scroll_to_bottom="@{vm.scrollToBottom}"
             tools:listitem="@layout/item_character" />
 
         <ProgressBar
             android:id="@+id/progressBar"
+            gone_unless="@{vm.showLoader}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            gone_unless="@{vm.showLoader}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -46,15 +46,15 @@
             tools:visibility="gone" />
 
         <br.com.henriquealtmayer.network.components.errorcontainer.ErrorContainer
+            gone_unless="@{vm.showError}"
+            on_try_again="@{vm::tryAgain}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="20dp"
-            gone_unless="@{vm.showError}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/rvHeroList"
             app:layout_constraintStart_toStartOf="@+id/rvHeroList"
             app:layout_constraintTop_toTopOf="@+id/rvHeroList"
-            on_try_again="@{vm::tryAgain}"
             tools:visibility="gone" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
